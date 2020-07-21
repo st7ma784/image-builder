@@ -3,9 +3,12 @@ description: The Beaker Image Builder builds Docker images and creates Beaker im
 
 inputs:
   dockerfile:
-    description: Path to the Dockerfile. Defaults to `Dockerfile`.
+    description: Path to the Dockerfile.
     required: false
     default: 'Dockerfile'
+  beakerToken:
+    description: Beaker user token. This should be stored as a repository secret e.g. `beakerToken: ${{ secrets.BEAKER_TOKEN }}`.
+    required: true
 
 outputs:
   image:
@@ -31,7 +34,7 @@ jobs:
       run: tar -xvzf beaker_linux.tar.gz
 
     - name: Configure Beaker user token
-      run: ./beaker config set user_token ${{secrets.BEAKER_TOKEN}}
+      run: ./beaker config set user_token $INPUT_BEAKERTOKEN
 
     - name: Login to GitHub Package registry
       run: echo ${{ secrets.GITHUB_TOKEN }} | docker login docker.pkg.github.com -u $GITHUB_ACTOR --password-stdin
