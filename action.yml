@@ -1,0 +1,29 @@
+name: Beaker Image Builder
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Download Beaker client
+      run: wget https://github.com/allenai/beaker/releases/download/v20200716/beaker_linux.tar.gz
+
+    - name: Extract Beaker client
+      run: tar -xvzf beaker_linux.tar.gz
+
+    - name: Configure Beaker user token
+      run: ./beaker config set user_token ${{secrets.BEAKER_TOKEN}}
+
+    - name: Build Docker image
+      run: docker build . --file Dockerfile --tag beaker-cloud-build
+
+    - name: Create Beaker image
+      run: ./beaker image create beaker-cloud-build
