@@ -7,9 +7,7 @@ inputs:
     required: false
     default: 'Dockerfile'
   beakerToken:
-    description: |
-      Beaker user token.
-      This should be stored as a repository secret e.g. `beakerToken: ${{ secrets.BEAKER_TOKEN }}`.
+    description: Beaker user token. This should be stored as a repository secret.
     required: true
 
 outputs:
