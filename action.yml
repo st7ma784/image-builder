@@ -9,6 +9,9 @@ inputs:
   beakerToken:
     description: Beaker user token. This should be stored as a repository secret.
     required: true
+  githubToken:
+    description: GitHub token. Used to authenticate with the GitHub Package Registry for Docker build caching.
+    required: true
 
 outputs:
   image:
@@ -37,7 +40,7 @@ jobs:
       run: ./beaker config set user_token $INPUT_BEAKERTOKEN
 
     - name: Login to GitHub Package registry
-      run: echo ${{ secrets.GITHUB_TOKEN }} | docker login docker.pkg.github.com -u $GITHUB_ACTOR --password-stdin
+      run: echo $INPUT_GITHUBTOKEN }} | docker login docker.pkg.github.com -u $GITHUB_ACTOR --password-stdin
 
     - name: Pull existing Docker image from cache
       run: docker pull docker.pkg.github.com/$GITHUB_REPOSITORY/beaker-image-build-cache || true
