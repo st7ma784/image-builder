@@ -1,4 +1,15 @@
 name: Beaker Image Builder
+description: The Beaker Image Builder builds Docker images and creates Beaker images.
+
+inputs:
+  dockerfile:
+    description: Path to the Dockerfile. Defaults to `Dockerfile`.
+    required: false
+    default: 'Dockerfile'
+
+outputs:
+  image:
+    description: Created Beaker image's ID.
 
 on:
   push:
@@ -23,7 +34,7 @@ jobs:
       run: ./beaker config set user_token ${{secrets.BEAKER_TOKEN}}
 
     - name: Build Docker image
-      run: docker build . --file Dockerfile --tag beaker-cloud-build
+      run: docker build . --file $INPUT_DOCKERFILE --tag beaker-cloud-build
 
     - name: Create Beaker image
-      run: ./beaker image create beaker-cloud-build
+      run: echo "::set-output name=image::${./beaker image create beaker-cloud-build}"
