@@ -33,8 +33,17 @@ jobs:
     - name: Configure Beaker user token
       run: ./beaker config set user_token ${{secrets.BEAKER_TOKEN}}
 
+    - name: Login to GitHub Package registry
+      run: echo ${{ secrets.GITHUB_TOKEN }} | docker login docker.pkg.github.com -u $GITHUB_ACTOR --password-stdin
+
+    - name: Pull existing Docker image from cache
+      run: docker pull docker.pkg.github.com/$GITHUB_REPOSITORY/beaker-image-build-cache || true
+
     - name: Build Docker image
-      run: docker build . --file $INPUT_DOCKERFILE --tag beaker-cloud-build
+      run: docker build . --file $INPUT_DOCKERFILE --tag docker.pkg.github.com/$GITHUB_REPOSITORY/beaker-image-build-cache --cache-from=docker.pkg.github.com/$GITHUB_REPOSITORY/beaker-image-build-cache
+
+    - name: Cache Docker image
+      run: docker push docker.pkg.github.com/$GITHUB_REPOSITORY/beaker-image-build-cache
 
     - name: Create Beaker image
-      run: echo "::set-output name=image::${./beaker image create beaker-cloud-build}"
+      run: ./beaker image create -q docker.pkg.github.com/$GITHUB_REPOSITORY/beaker-image-build-cache
