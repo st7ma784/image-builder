@@ -40,7 +40,7 @@ jobs:
       run: ./beaker config set user_token $INPUT_BEAKERTOKEN
 
     - name: Login to GitHub Package registry
-      run: echo $INPUT_GITHUBTOKEN }} | docker login docker.pkg.github.com -u $GITHUB_ACTOR --password-stdin
+      run: echo $INPUT_GITHUBTOKEN | docker login docker.pkg.github.com -u $GITHUB_ACTOR --password-stdin
 
     - name: Pull existing Docker image from cache
       run: docker pull docker.pkg.github.com/$GITHUB_REPOSITORY/beaker-image-build-cache || true
