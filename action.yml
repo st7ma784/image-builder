@@ -13,6 +13,15 @@ inputs:
       Workspace to place the build image.
       If not provided, the default workspace will be used.
     required: false
+  imageName:
+    description: |
+      Name for the image.
+      If omitted, the image will not be named.
+      Note that image names must be unique.
+    required: false
+outputs:
+  imageID:
+    description: Beaker image ID.
 runs:
   using: docker
   image: Dockerfile
