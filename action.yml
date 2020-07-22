@@ -19,6 +19,10 @@ inputs:
       If omitted, the image will not be named.
       Note that image names must be unique.
     required: false
+  github_token:
+    description: |
+      GitHub token is used to authenticate with the GitHub Package Registry for caching
+      Docker builds. This is optional.
 outputs:
   imageID:
     description: Beaker image ID.
