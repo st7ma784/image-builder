@@ -8,6 +8,11 @@ inputs:
   beakerToken:
     description: Beaker user token. This should be stored as a repository secret.
     required: true
+  beakerWorkspace:
+    description: | 
+      Workspace to place the build image.
+      If not provided, the default workspace will be used.
+    required: false
 runs:
   using: docker
   image: Dockerfile
