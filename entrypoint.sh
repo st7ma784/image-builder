@@ -1,7 +1,7 @@
 #!/bin/bash
 
-beaker config set user_token "$INPUT_BEAKERTOKEN"
-[[ -n "$INPUT_BEAKERWORKSPACE" ]] && beaker config set default_workspace "$INPUT_BEAKERWORKSPACE"
+beaker config set user_token "$INPUT_BEAKER_TOKEN"
+[[ -n "$INPUT_BEAKER_WORKSPACE" ]] && beaker config set default_workspace "$INPUT_BEAKER_WORKSPACE"
 
 TAG="docker.pkg.github.com/$GITHUB_REPOSITORY/beaker-image-build-cache"
 
@@ -24,6 +24,9 @@ fi
 
 IMAGE=$(beaker image create -q $TAG)
 
-[[ -n "$INPUT_IMAGENAME" ]] && beaker image rename $IMAGE $INPUT_IMAGENAME
+if [[ -n "$INPUT_IMAGE_NAME" ]]
+then
+    beaker image rename $IMAGE $INPUT_IMAGE_NAME
+fi
 
-echo "set-output name=imageID::$IMAGE"
+echo "set-output name=image_id::$IMAGE"

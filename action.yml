@@ -5,15 +5,15 @@ inputs:
     description: Path to the Dockerfile.
     required: false
     default: 'Dockerfile'
-  beakerToken:
+  beaker_token:
     description: Beaker user token. This should be stored as a repository secret.
     required: true
-  beakerWorkspace:
+  beaker_workspace:
     description: | 
       Workspace to place the build image.
       If not provided, the default workspace will be used.
     required: false
-  imageName:
+  beaker_image_name:
     description: |
       Name for the image.
       If omitted, the image will not be named.
@@ -22,9 +22,9 @@ inputs:
   github_token:
     description: |
       GitHub token is used to authenticate with the GitHub Package Registry for caching
-      Docker builds. This is optional.
+      Docker builds. This is optional. Caching will be disabled if it is not provided.
 outputs:
-  imageID:
+  image_id:
     description: Beaker image ID.
 runs:
   using: docker
