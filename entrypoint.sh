@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 beaker config set user_token "$INPUT_BEAKER_TOKEN"
 [[ -n "$INPUT_BEAKER_WORKSPACE" ]] && beaker config set default_workspace "$INPUT_BEAKER_WORKSPACE"
 
