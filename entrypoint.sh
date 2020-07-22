@@ -24,9 +24,9 @@ fi
 
 IMAGE=$(beaker image create -q $TAG)
 
-if [[ -n "$INPUT_IMAGE_NAME" ]]
+if [[ -n "$INPUT_BEAKER_IMAGE_NAME" ]]
 then
-    beaker image rename $IMAGE $INPUT_IMAGE_NAME
+    beaker image rename $IMAGE $INPUT_BEAKER_IMAGE_NAME
 fi
 
 echo "set-output name=image_id::$IMAGE"
