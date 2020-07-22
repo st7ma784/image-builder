@@ -24,11 +24,9 @@ then
     docker push $TAG
 fi
 
-IMAGE=$(beaker image create -q $TAG)
+DESC="https://github.com/$GITHUB_REPOSITORY/commit/$GITHUB_SHA"
 
-if [[ -n "$INPUT_BEAKER_IMAGE_NAME" ]]
-then
-    beaker image rename $IMAGE $INPUT_BEAKER_IMAGE_NAME
-fi
+DEFAULT_NAME=$(echo "$GITHUB_REPOSITORY" | awk -F / '{print $2}')-${GITHUB_SHA::8}
+NAME="${INPUT_BEAKER_IMAGE_NAME:-DEFAULT_NAME}"
 
-echo "set-output name=image_id::$IMAGE"
+beaker image create --desc $DESC --name $NAME $TAG

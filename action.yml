@@ -1,10 +1,6 @@
 name: Beaker Image Builder
 description: The Beaker Image Builder builds Docker images and creates Beaker images.
 inputs:
-  dockerfile:
-    description: Path to the Dockerfile.
-    required: false
-    default: 'Dockerfile'
   beaker_token:
     description: Beaker user token. This should be stored as a repository secret.
     required: true
@@ -14,6 +10,10 @@ inputs:
   beaker_image_name:
     description: Name for the image. If omitted, the image will not be named.
     required: false
+  dockerfile:
+    description: Path to the Dockerfile.
+    required: false
+    default: 'Dockerfile'
   github_token:
     description: The GitHub token is used to authenticate with the GitHub Package Registry for caching Docker builds. If omitted, caching will be disabled.
     required: false
