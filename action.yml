@@ -1,6 +1,5 @@
 name: Beaker Image Builder
 description: The Beaker Image Builder builds Docker images and creates Beaker images.
-
 inputs:
   dockerfile:
     description: Path to the Dockerfile.
@@ -9,47 +8,6 @@ inputs:
   beakerToken:
     description: Beaker user token. This should be stored as a repository secret.
     required: true
-  githubToken:
-    description: GitHub token. Used to authenticate with the GitHub Package Registry for Docker build caching.
-    required: true
-
-outputs:
-  image:
-    description: Created Beaker image's ID.
-
-on:
-  push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
-
-jobs:
-  build:
-    runs-on: ubuntu-latest
-
-    steps:
-    - uses: actions/checkout@v2
-
-    - name: Download Beaker client
-      run: wget https://github.com/allenai/beaker/releases/download/v20200716/beaker_linux.tar.gz
-
-    - name: Extract Beaker client
-      run: tar -xvzf beaker_linux.tar.gz
-
-    - name: Configure Beaker user token
-      run: ./beaker config set user_token $INPUT_BEAKERTOKEN
-
-    - name: Login to GitHub Package registry
-      run: echo $INPUT_GITHUBTOKEN | docker login docker.pkg.github.com -u $GITHUB_ACTOR --password-stdin
-
-    - name: Pull existing Docker image from cache
-      run: docker pull docker.pkg.github.com/$GITHUB_REPOSITORY/beaker-image-build-cache || true
-
-    - name: Build Docker image
-      run: docker build . --file $INPUT_DOCKERFILE --tag docker.pkg.github.com/$GITHUB_REPOSITORY/beaker-image-build-cache --cache-from=docker.pkg.github.com/$GITHUB_REPOSITORY/beaker-image-build-cache
-
-    - name: Cache Docker image
-      run: docker push docker.pkg.github.com/$GITHUB_REPOSITORY/beaker-image-build-cache
-
-    - name: Create Beaker image
-      run: ./beaker image create -q docker.pkg.github.com/$GITHUB_REPOSITORY/beaker-image-build-cache
+runs:
+  using: docker
+  image: Dockerfile
