@@ -16,7 +16,7 @@ then
     # Login to GitHub Package registry.
     echo $INPUT_GITHUB_TOKEN | docker login docker.pkg.github.com -u $GITHUB_ACTOR --password-stdin
     # Pull existing Docker image from cache.
-    docker pull docker.pkg.github.com/$GITHUB_REPOSITORY/beaker-image-build-cache || true
+    docker pull $TAG || true
 fi
 
 docker build . --file "$INPUT_DOCKERFILE" --tag "$TAG" --cache-from="$TAG"
