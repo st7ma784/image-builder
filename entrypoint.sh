@@ -6,7 +6,7 @@ beaker config set user_token "$INPUT_BEAKER_TOKEN"
 [[ -n "$INPUT_BEAKER_WORKSPACE" ]] && beaker config set default_workspace "$INPUT_BEAKER_WORKSPACE"
 
 # The last section of the name must be globally unique, so add a hash of the repo name.
-TAG="docker.pkg.github.com/$GITHUB_REPOSITORY/beaker-image-build-cache-$(echo $GITHUB_REPOSITORY | md5)"
+TAG="docker.pkg.github.com/$GITHUB_REPOSITORY/beaker-image-build-cache-$(echo $GITHUB_REPOSITORY | md5sum)"
 # Docker repository names must be lowercase.
 TAG=$(echo  | tr '[:upper:]' '[:lower:]')
 
