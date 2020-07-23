@@ -8,13 +8,13 @@ inputs:
     description: Workspace for the built image. If omitted, the default workspace will be used.
     required: false
   beaker_image_name:
-    description: Name for the image. If omitted, the image will not be named.
+    description: Name for the image. If omitted, the image will named with the repository and commit SHA e.g. repo-abc1234.
     required: false
   dockerfile:
     description: Path to the Dockerfile.
     required: false
     default: 'Dockerfile'
-  auto_dockerfile:
+  dockerfile_template:
     description: Use a Dockerfile template instead of a Dockerfile included in the repository.
     required: false
   github_token:

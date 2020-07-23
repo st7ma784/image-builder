@@ -43,6 +43,9 @@ on:
   push:
     # Run on every commit to the master branch.
     branches: [ master ]
+  pull_request:
+    # Run on every pull request to the master branch.
+    branches: [ master ]
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -52,7 +55,22 @@ jobs:
     - name: Beaker Image Builder
       uses: beaker/image-builder@master
       with:
+        # Beaker user token. This should be stored as a repository secret using the instructions above.
         beaker_token: ${{ secrets.BEAKER_TOKEN }}
+
+        # Workspace for the built image. If omitted, the default workspace will be used.
+        # beaker_workspace: ai2/my-workspace
+
+        # Name for the image. If omitted, the image will named with the repository and commit SHA e.g. repo-abc1234.
+        # beaker_image_name: my-custom-image-name-${{ github.SHA }}
+
+        # Path to the Dockerfile. Defaults to Dockerfile at the root of the repository.
+        # dockerfile: directory/Dockerfile
+
+        # Use a Dockerfile template instead of a Dockerfile included in the repository.
+        # dockerfile_template: python-pip
+
+        # The GitHub token is used to authenticate with the GitHub Package Registry for caching Docker builds. If omitted, caching will be disabled.
         github_token: ${{ secrets.GITHUB_TOKEN }}
 ```
 
@@ -76,7 +94,7 @@ If omitted, the image will be named using the repository name and the SHA hash o
 
 Path to the Dockerfile. Defaults to `Dockerfile` at the root of the repository.
 
-### `auto_dockerfile`
+### `dockerfile_template`
 
 Use a curated Dockerfile provided by Beaker instead of a custom Dockerfile included in the repository.
 Must be one of the following options:

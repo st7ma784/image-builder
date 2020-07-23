@@ -20,10 +20,10 @@ then
 fi
 
 DOCKERFILE="$INPUT_DOCKERFILE"
-if [[ "$INPUT_AUTO_DOCKERFILE" = "python-pip" ]]; then
+if [[ "$INPUT_DOCKERFILE_TEMPLATE" = "python-pip" ]]; then
     DOCKERFILE="/dockerfiles/Dockerfile.python-pip"
-elif [[ -n "$INPUT_AUTO_DOCKERFILE" ]]; then
-    echo "Invalid value for auto_dockerfile"
+elif [[ -n "$INPUT_DOCKERFILE_TEMPLATE" ]]; then
+    echo "Invalid value for dockerfile_template"
 fi
 
 docker build . --file "$DOCKERFILE" --tag "$TAG" --cache-from="$TAG"
