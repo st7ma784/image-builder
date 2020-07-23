@@ -21,15 +21,15 @@ fi
 
 docker build . --file "$INPUT_DOCKERFILE" --tag "$TAG" --cache-from="$TAG"
 
-# Push Docker image to cache.
-if [[ -n "$INPUT_GITHUB_TOKEN" ]]
-then
-    docker push $TAG
-fi
-
 DESC="https://github.com/$GITHUB_REPOSITORY/tree/$GITHUB_SHA"
 
 DEFAULT_NAME=$(echo "$GITHUB_REPOSITORY" | awk -F / '{print $2}')-${GITHUB_SHA::7}
 NAME="${INPUT_BEAKER_IMAGE_NAME:-$DEFAULT_NAME}"
 
 beaker image create --desc $DESC --name $NAME $TAG
+
+# Push Docker image to cache.
+if [[ -n "$INPUT_GITHUB_TOKEN" ]]
+then
+    docker push $TAG
+fi
