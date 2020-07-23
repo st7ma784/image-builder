@@ -7,5 +7,6 @@ RUN wget https://github.com/allenai/beaker/releases/download/v20200716/beaker_li
     && tar -xvzf beaker_linux.tar.gz \
     && mv beaker /usr/local/bin
 
+COPY dockerfiles /dockerfiles
 COPY entrypoint.sh /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]

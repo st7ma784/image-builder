@@ -19,7 +19,14 @@ then
     docker pull $TAG || true
 fi
 
-docker build . --file "$INPUT_DOCKERFILE" --tag "$TAG" --cache-from="$TAG"
+DOCKERFILE="$INPUT_DOCKERFILE"
+if [[ "$INPUT_AUTO_DOCKERFILE" = "python-pip" ]]; then
+    DOCKERFILE="/dockerfiles/Dockerfile.python-pip"
+elif [[ -n "$INPUT_AUTO_DOCKERFILE" ]]; then
+    echo "Invalid value for auto_dockerfile"
+fi
+
+docker build . --file "$DOCKERFILE" --tag "$TAG" --cache-from="$TAG"
 
 DESC="https://github.com/$GITHUB_REPOSITORY/tree/$GITHUB_SHA"
 

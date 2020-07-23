@@ -14,6 +14,9 @@ inputs:
     description: Path to the Dockerfile.
     required: false
     default: 'Dockerfile'
+  auto_dockerfile:
+    description: Use a Dockerfile template instead of a Dockerfile included in the repository.
+    required: false
   github_token:
     description: The GitHub token is used to authenticate with the GitHub Package Registry for caching Docker builds. If omitted, caching will be disabled.
     required: false

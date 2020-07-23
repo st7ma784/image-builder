@@ -76,6 +76,12 @@ If omitted, the image will be named using the repository name and the SHA hash o
 
 Path to the Dockerfile. Defaults to `Dockerfile` at the root of the repository.
 
+### `auto_dockerfile`
+
+Use a curated Dockerfile provided by Beaker instead of a custom Dockerfile included in the repository.
+Must be one of the following options:
+ - `python-pip`: Python 3.7 with GPU support. Dependencies are installed with pip; requirements.txt must exist in the repository.
+
 ### `github_token`
 
 The GitHub token is used to authenticate with the GitHub Package Registry for caching Docker builds. If omitted, caching will be disabled.
