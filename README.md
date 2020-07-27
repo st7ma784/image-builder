@@ -38,7 +38,7 @@ To configure it:
 
 ![Setting Beaker token secret](/images/beaker-token-secret.png)
 
-## Image Builder Action
+### Image Builder Action
 
 To get started, copy the file below into `.github/workflows/beaker.yml` and commit it.
 
@@ -82,6 +82,17 @@ jobs:
         github_token: ${{ secrets.GITHUB_TOKEN }}
 ```
 
+## Usage
+
+Once configured, Beaker images will be built for each commit.
+To check the status of an image build, go to the **Actions** tab
+or hover on the status indicator of a commit.
+
+![Action status page](/images/actions-status.png)
+
+Once an image is created, it will be visible on the [Beaker image search page](https://beaker.org/images?sort=committed:descending&creator=me)
+with a link back to the source commit.
+
 ## Inputs
 
 ### `beaker_token`
@@ -111,14 +122,3 @@ Must be one of the following options:
 ### `github_token`
 
 The GitHub token is used to authenticate with the GitHub Package Registry for caching Docker builds. If omitted, caching will be disabled.
-
-## Usage
-
-Once configured, Beaker images will be built for each commit.
-To check the status of an image build, go to the **Actions** tab
-or hover on the status indicator of a commit.
-
-![Action status page](/images/actions-status.png)
-
-Once an image is created, it will be visible on the [Beaker image search page](https://beaker.org/images?sort=committed:descending&creator=me)
-with a link back to the source commit.
