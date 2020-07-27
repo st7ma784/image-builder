@@ -12,6 +12,14 @@ With the Beaker Image Builder, the basic workflow is:
 1. Wait for the image to build.
 1. Start Beaker experiments with the new image.
 
+## Requirements
+
+The Beaker Image Builder can be used with any GitHub repository, private or public.
+
+The repository must have a Dockerfile.
+If you need help creating a Dockerfile, please contact the Beaker team and we will help you create one.
+We are working on creating Dockerfile templates for common situations.
+
 ## Configuration
 
 ### Beaker User Token
