@@ -33,6 +33,11 @@ DESC="https://github.com/$GITHUB_REPOSITORY/tree/$GITHUB_SHA"
 DEFAULT_NAME=$(echo "$GITHUB_REPOSITORY" | awk -F / '{print $2}')-${GITHUB_SHA::7}
 NAME="${INPUT_BEAKER_IMAGE_NAME:-$DEFAULT_NAME}"
 
+if [[ -n "$INPUT_BEAKER_IMAGE_NAME_OVERWRITE" ]]
+then
+    beaker image rename $NAME "" && echo "Removed name of existing image" || echo "No existing image found"
+fi
+
 beaker image create --desc $DESC --name $NAME $TAG
 
 # Push Docker image to cache.

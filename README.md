@@ -127,6 +127,10 @@ Beaker workspace for the built image. If omitted, the default workspace is used.
 Name for the built image.
 If omitted, the image will be named using the repository name and the SHA hash of the latest commit, e.g. `repo-1234abc`.
 
+### `beaker_image_name_overwrite`
+
+If set, the image builder will clear the name of any existing image with the desired image name.
+
 ### `dockerfile`
 
 Path to the Dockerfile. Defaults to `Dockerfile` at the root of the repository.
