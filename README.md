@@ -93,6 +93,24 @@ or hover on the status indicator of a commit.
 Once an image is created, it will be visible on the [Beaker image search page](https://beaker.org/images?sort=committed:descending&creator=me)
 with a link back to the source commit.
 
+## Starting an Experiment with the Latest Image
+
+The Beaker image builder creates images with names in the form `{GitHub repository}-{Git commit SHA}`, e.g. `my-repo-4b2891a`.
+
+We can do use environment variable substitution in Beaker experiment specs to set the image to the latest version. In your spec, change the image to:
+
+```
+    image: {{ .Env.IMAGE }}
+```
+
+Then start the experiment like this:
+
+```
+IMAGE="my-repo-$(git rev-parse --short HEAD)" beaker experiment create -f spec.yml
+```
+
+This will use the image from the latest commit to start the experiment. Note that you will have to wait for the image to be built before you can start the experiment.
+
 ## Inputs
 
 ### `beaker_token`
