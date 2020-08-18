@@ -72,6 +72,9 @@ jobs:
         # Name for the image. If omitted, the image will named with the repository and commit SHA e.g. repo-abc1234.
         # beaker_image_name: my-custom-image-name-${{ github.SHA }}
 
+        # If set any conflicting image name will be cleared.
+        # beaker_image_name_overwrite: "true"
+
         # Path to the Dockerfile. Defaults to Dockerfile at the root of the repository.
         # dockerfile: directory/Dockerfile
 

@@ -10,6 +10,9 @@ inputs:
   beaker_image_name:
     description: Name for the image. If omitted, the image will named with the repository and commit SHA e.g. repo-abc1234.
     required: false
+  beaker_image_name_overwrite:
+    description: If set, the image builder will clear the name of any existing image with the desired image name.
+    required: false
   dockerfile:
     description: Path to the Dockerfile.
     required: false
