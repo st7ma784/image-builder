@@ -38,7 +38,7 @@ then
     beaker image rename $NAME "" && echo "Removed name of existing image" || echo "No existing image found"
 fi
 
-beaker image create --desc $DESC --name $NAME $TAG
+beaker image create --description $DESC --name $NAME $TAG
 
 # Push Docker image to cache.
 if [[ -n "$INPUT_GITHUB_TOKEN" ]]
