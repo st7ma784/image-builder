@@ -1,11 +1,14 @@
 FROM docker
 
-RUN apk --no-cache add wget bash
+RUN apk --no-cache add bash curl wget
 
 # Install Beaker CLI.
-RUN wget https://github.com/allenai/beaker/releases/download/v20200716/beaker_linux.tar.gz \
-    && tar -xvzf beaker_linux.tar.gz \
-    && mv beaker /usr/local/bin
+RUN curl -s https://api.github.com/repos/allenai/beaker/releases/latest \
+        | grep 'browser_download_url.*linux' \
+        | cut -d '"' -f 4 \
+        | wget -qi - \
+    && tar -xvzf beaker_linux.tar.gz -C /usr/local/bin \
+    && rm beaker_linux.tar.gz
 
 COPY dockerfiles /dockerfiles
 COPY entrypoint.sh /entrypoint.sh
