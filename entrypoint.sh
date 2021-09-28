@@ -45,3 +45,12 @@ if [[ -n "$INPUT_GITHUB_TOKEN" ]]
 then
     docker push $TAG
 fi
+
+
+if [[ -n "$INPUT_SPEC_FILE" ]]
+then
+    IMAGE=$NAME IMAGE=$NAME beaker experiment create -f "$INPUT_SPEC_FILE"
+fi
+
+
+IMAGE="my-repo-$(git rev-parse --short HEAD)" beaker experiment create -f spec.yml
