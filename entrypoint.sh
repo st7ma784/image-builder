@@ -51,6 +51,9 @@ IMAGE=${INPUT_BEAKER_IMAGE_NAME:-$DEFAULT_NAME}
 
 if [[ -n "$INPUT_SPEC_FILE" ]]
 then
+    #debug line because im so done guessing
+    echo $IMAGE
+    echo $TAG
     beaker experiment create "$INPUT_SPEC_FILE"
 fi
 
