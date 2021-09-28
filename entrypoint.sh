@@ -53,4 +53,3 @@ then
 fi
 
 
-IMAGE="my-repo-$(git rev-parse --short HEAD)" beaker experiment create -f spec.yml
