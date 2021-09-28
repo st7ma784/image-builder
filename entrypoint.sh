@@ -56,7 +56,7 @@ then
     echo $IMAGE
     echo $TAG
     echo $GITHUB_ACTOR
-    beaker experiment create "$INPUT_SPEC_FILE"
+    IMAGE="$GITHUB_ACTOR/$NAME" beaker experiment create "$INPUT_SPEC_FILE"
 fi
 
 
