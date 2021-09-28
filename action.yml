@@ -23,6 +23,9 @@ inputs:
   github_token:
     description: The GitHub token is used to authenticate with the GitHub Package Registry for caching Docker builds. If omitted, caching will be disabled.
     required: false
+  spec_file:
+    description: The path to the experiment Spec to run when build is complete. 
+    required: false
 outputs:
   image_id:
     description: Beaker image ID.
