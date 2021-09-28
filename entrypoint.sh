@@ -45,8 +45,8 @@ if [[ -n "$INPUT_GITHUB_TOKEN" ]]
 then
     docker push $TAG
 fi
-IMAGE=$Name
-IMAGE=$(echo $IMAGE | tr '[:upper:]' '[:lower:]')
+IMAGE=$NAME
+#IMAGE=$(echo $IMAGE | tr '[:upper:]' '[:lower:]')
 
 if [[ -n "$INPUT_SPEC_FILE" ]]
 then
