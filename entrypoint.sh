@@ -45,10 +45,11 @@ if [[ -n "$INPUT_GITHUB_TOKEN" ]]
 then
     docker push $TAG
 fi
+IMAGE=$NAME
 
 if [[ -n "$INPUT_SPEC_FILE" ]]
 then
-    IMAGE=$NAME beaker experiment create "$INPUT_SPEC_FILE"
+    beaker experiment create "$INPUT_SPEC_FILE"
 fi
 
 
