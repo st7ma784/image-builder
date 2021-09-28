@@ -45,7 +45,8 @@ if [[ -n "$INPUT_GITHUB_TOKEN" ]]
 then
     docker push $TAG
 fi
-IMAGE=$NAME
+IMAGE="$GITHUB_REPOSITORY-$(git rev-parse --short HEAD)"
+IMAGE=$(echo $IMAGE | tr '[:upper:]' '[:lower:]')
 
 if [[ -n "$INPUT_SPEC_FILE" ]]
 then
