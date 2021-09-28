@@ -45,7 +45,7 @@ if [[ -n "$INPUT_GITHUB_TOKEN" ]]
 then
     docker push $TAG
 fi
-IMAGE='$GITHUB_ACTOR/$NAME'
+IMAGE='${GITHUB_ACTOR}/${NAME}'
 #IMAGE="${NAME}"
 #and failing that $Tag
 #IMAGE=$(echo $IMAGE | tr '[:upper:]' '[:lower:]')
