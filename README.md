@@ -80,6 +80,9 @@ jobs:
 
         # Use a Dockerfile template instead of a Dockerfile included in the repository.
         # dockerfile_template: python-pip
+        
+        #Use an Experiment spec to immediately launch tests. See note about using Image: {{ .env.NAME }}
+        #spec_file: UnitTest.yml
 
         # The GitHub token is used to authenticate with the GitHub Package Registry for caching Docker builds. If omitted, caching will be disabled.
         github_token: ${{ secrets.GITHUB_TOKEN }}
