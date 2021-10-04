@@ -49,7 +49,7 @@ fi
 
 if [[ -n "$INPUT_SPEC_FILE" ]]
 then
-    IMAGE=$NAME IMAGE=$NAME beaker experiment create -f "$INPUT_SPEC_FILE"
+    IMAGE=$NAME IMAGE=$NAME beaker experiment create "$INPUT_SPEC_FILE"
 fi
 
 
