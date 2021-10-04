@@ -10,16 +10,10 @@ inputs:
   beaker_image_name:
     description: Name for the image. If omitted, the image will named with the repository and commit SHA e.g. repo-abc1234.
     required: false
-  beaker_image_name_overwrite:
-    description: If set, the image builder will clear the name of any existing image with the desired image name.
-    required: false
   dockerfile:
-    description: Path to the Dockerfile.
-    required: false
+    description: URL To Docker Image.
+    required: true
     default: 'Dockerfile'
-  dockerfile_template:
-    description: Use a Dockerfile template instead of a Dockerfile included in the repository.
-    required: false
   github_token:
     description: The GitHub token is used to authenticate with the GitHub Package Registry for caching Docker builds. If omitted, caching will be disabled.
     required: false
